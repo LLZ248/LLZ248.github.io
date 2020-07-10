@@ -63,16 +63,26 @@
       var birthday = new Date(document.forms[0].birthday.value)
       minus = (today - birthday)/31556952000
       if (minus > 13){
-          alert("Your form has been submitted.")
+        confirmForm();
           return true;
       }
       else{
           alert("You must be 13 years old or above");
-          location.reload()
-          return false;
-          
+          location.reload();
+          return false;          
       }
-    }
+    }      
+    function confirmForm() {
+        var email = document.forms[0].email.value;
+        var name = document.forms[0].fname.value + " " + document.forms[0].lname.value;
+        var birthday = document.forms[0].birthday.value;
+        if (confirm("Are the following information correct?\nEmail: "+email+ "\nName: "+name+"\nBirthday: "+ birthday)) {
+          alert("Your form has been submitted.")
+        } 
+        else {
+          return false;
+        }
+      }
   </script>
 
   <div class="container-fluild">
@@ -85,7 +95,7 @@
       <h2 class="text-center">Registration</h2>
     </header>
     
-    <form action="/action_page.php" onsubmit="return checkage()" method="POST" autocomplete="on">
+    <form action="/action_page.php" method="POST" autocomplete="on" onsubmit="return checkage()">
       <div class="form-group">
         <label for="email">Email:</label>
         <input type="email" class="form-control" id="email" placeholder="Enter Email" name="email" autofocus required>
