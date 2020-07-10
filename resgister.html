@@ -63,8 +63,13 @@
       var birthday = new Date(document.forms[0].birthday.value)
       minus = (today - birthday)/31556952000
       if (minus > 13){
-        confirmForm();
+        if (confirmForm()){
           return true;
+        }
+        else{
+          return false;
+        }
+          
       }
       else{
           alert("You must be 13 years old or above");
@@ -78,6 +83,7 @@
         var birthday = document.forms[0].birthday.value;
         if (confirm("Are the following information correct?\nEmail: "+email+ "\nName: "+name+"\nBirthday: "+ birthday)) {
           alert("Your form has been submitted.")
+          return true;
         } 
         else {
           return false;
